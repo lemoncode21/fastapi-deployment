@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  app-fastapi:
+    build: .
+    command: uvicorn main:app --host 0.0.0.0
+    ports:
+      - "8888:8000"
+    networks:
+      - app-fastapi
+      - database-fastapi_postgres-database
+
+networks:
+  app-fastapi:
+    driver: bridge
+
+  database-fastapi_postgres-database:
+    external: true
